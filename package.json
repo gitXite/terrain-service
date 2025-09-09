@@ -1,14 +1,11 @@
 {
-  "name": "terrain2stl",
+  "name": "terrain-service",
   "version": "2.0.0",
   "description": "Creates STL files of the Earth",
-  "main": "terrainServer.js",
+  "main": "server.js",
   "scripts": {
-    "test": "node terrainServer.js"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/ThatcherC/Terrain2STL.git"
+    "start": "node server.js",
+    "dev": "nodemon server.js"
   },
   "keywords": [
     "STL",
@@ -21,16 +18,10 @@
   ],
   "author": "Thatcher Chamberlin",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/ThatcherC/Terrain2STL/issues"
-  },
-  "homepage": "https://github.com/ThatcherC/Terrain2STL#readme",
+  "homepage": "https://github.com/gitXite/terrain-service/#readme",
   "dependencies": {
     "body-parser": "^1.20.3",
     "dotenv": "^17.2.2",
-    "express": "^4.21.2",
-    "node-fetch": "^3.3.2",
-    "queue": "^6.0.1",
-    "task-queue": "^1.0.2"
+    "express": "^4.21.2"
   }
 }
