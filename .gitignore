@@ -3,6 +3,7 @@
 *.zip
 *.log
 /hgt_files/*
+/stl_files/*
 /node_modules/*
 *.min.*
 elevstl
