@@ -9,3 +9,5 @@ elevstl
 celevstl
 /stls/*
 include-maps.js
+
+.env
