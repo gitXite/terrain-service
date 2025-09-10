@@ -17,14 +17,6 @@ if (!fs.existsSync(STL_DIR)) fs.mkdirSync(STL_DIR, { recursive: true });
 
 const CELEVS = path.join(__dirname, 'celevstl');
 
-function getSRTMTileName(lat, lng) {
-    const latPrefix = lat >= 0 ? 'N' : 'S';
-    const lngPrefix = lng >= 0 ? 'E' : 'W';
-    const latStr = String(Math.abs(Math.floor(lat))).padStart(2, '0');
-    const lngStr = String(Math.abs(Math.floor(lng))).padStart(3, '0');
-    return `${latPrefix}${latStr}${lngPrefix}${lngStr}.HGT`;
-}
-
 app.post('/generate', async (req, res) => {
     try {
         // northwest corner lat, northwest corner lng
@@ -32,7 +24,7 @@ app.post('/generate', async (req, res) => {
         if (!lat || !lng || !width || !height || !verticalScale) {
             return res.status(400).send("Missing required parameters");
         }
-        
+
         const outputSTL = path.resolve(STL_DIR, `terrain_${Date.now()}.stl`);
 
         // Run celevstl using the HGT tile
