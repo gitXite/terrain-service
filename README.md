@@ -27,7 +27,7 @@ make
 ### 📡 API Usage
 Send a ```POST``` request to the ```/generate``` endpoint with the required parameters. 
 
-#### POST ```/generate```
+#### ```POST /generate```
 Parameters (sent in body as JSON):
 
 | Parameter    | Description                                 |
