@@ -21,7 +21,7 @@ Build the STL generator program with a simple `make`:
 ```sh
 you@comp:~/.../Terrain2STL$ make
 ```
-If that's successful, generate an STL file by hitting the api/generate endpoint with the following parameters
+If that's successful, generate an STL file by hitting the /generate endpoint with a POST request with the following parameters
 ```
 
 ```
