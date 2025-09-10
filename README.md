@@ -1,5 +1,6 @@
 # Terrain-Service
 A lightweight Node.js microservice that generates 3D terrain models in STL format from DEM data.
+Integrated with scape-backend. 
 Based on Terrain2STL by ThatcherC.
 
 ### 🚀 Try It Out
