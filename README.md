@@ -53,5 +53,5 @@ The arguments for the celevstl are:
 
 * `server.js`
 
-  * Node.js server. Takes parameters from my frontend via my backend, and passes them to elevstl to create the STL.
+  * Node.js server. Takes parameters from my backend, and passes them to elevstl to create the STL.
   * Also handles client downloading of files.
