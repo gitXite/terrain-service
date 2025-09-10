@@ -59,6 +59,7 @@ The STL file will be generated and sent back as a response once complete.
 |   | 
 │   └── elevstl.c               # C program for terrain-to-STL conversion and relevant helper files
 │
+├── Makefile                    # Simple Makefile to compile elevstl.c
 ├── celevstl                    # Compiled C program for STL generation
 ├── server.js                   # Node.js server that handles requests and STL generation
 ├── example.env                 # Example .env file
