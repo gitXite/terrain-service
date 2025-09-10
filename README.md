@@ -66,7 +66,7 @@ The STL file will be generated and sent back as a response once complete.
 └── README.md
 ```
 
-### Notes
+### 📝 Notes
 
 STL generation is delegated to the C program elevstl.c, which accepts CLI arguments.
 
