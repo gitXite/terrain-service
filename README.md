@@ -28,20 +28,25 @@ make
 Send a ```POST``` request to the ```/generate``` endpoint with the required parameters. 
 
 #### ```POST /generate```
-Parameters (sent in body as JSON):
+Parameters of an API call (sent in body as JSON):
 
-| Parameter    | Description                                 |
-| ------------ | ------------------------------------------- |
-| `lat`        | Latitude of the **northwest** corner        |
-| `lon`        | Longitude of the **northwest** corner       |
-| `width`      | Model width in "pixels"                     |
-| `height`     | Model height in "pixels"                    |
-| `zscale`     | Vertical scaling factor                     |
-| `rotation`   | Rotation angle (degrees)                    |
-| `waterdrop`  | Amount to lower sea level (in mm)           |
-| `baseheight` | Additional base thickness for model (in mm) |
-| `step`       | Step size (HGT cells per model pixel)       |
-| `outfile`    | Output STL file name                        |
+| Parameter     | Description                                 |
+| ------------- | ------------------------------------------- |
+| `lat`         | Latitude of the **northwest** corner        |
+| `lng`         | Longitude of the **northwest** corner       |
+| `width`       | Model width in "pixels"                     |
+| `height`      | Model height in "pixels"                    |
+| `zscale`      | Vertical scaling factor                     |
+
+Additional arguments for manual generation:
+
+| celevstl args | Description                                 |
+| ------------- | ------------------------------------------- |
+| `rotation`    | Rotation angle (degrees)                    |
+| `waterdrop`   | Amount to lower sea level (in mm)           |
+| `baseheight`  | Additional base thickness for model (in mm) |
+| `step`        | Step size (HGT cells per model pixel)       |
+| `outfile`     | Output STL file name                        |
 
 
 The STL file will be generated and sent back as a response once complete. 
