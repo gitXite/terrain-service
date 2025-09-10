@@ -1,57 +1,72 @@
-Terrain-Service
-===========
+# Terrain-Service
+A lightweight Node.js microservice that generates 3D terrain models in STL format from DEM data.
+Based on Terrain2STL by ThatcherC.
 
-Node.js microservice to generate STL terrain models from DEM data. Based on Terrain2STL by ThatcherC
+### 🚀 Try It Out
 
-### Try it Out!
-
-You can also download everything here and start the server with:
+Clone the repository and start the server:
 
 ```node start```
 
 It will run at localhost:8080.
 
-Uses .HGT DEM data, which you need to download yourself. My iteration is currently only available in Norway. 
+⚠️ Note: This service uses .HGT DEM files, which are not included. You'll need to download the appropriate files yourself.
+Currently, this version only supports terrain generation in Norway.
 
-### Install
-First install dependencies
+### 🔧 Installation
+
+**1.** Install Node.js dependencies:
 ```npm install```
 
-Build the STL generator program with a simple `make`:
+**2.** Build the STL generator (written in C):
 ```sh
-you@comp:~/.../Terrain2STL$ make
-```
-If that's successful, generate an STL file by hitting the /generate endpoint with a POST request with the following parameters
-```
-
+cd terrain-service
+make
 ```
 
-The arguments for the celevstl are:
-- Northwest corner latitude
-- Northwest corner longitude
-- Model width ("pixels")
-- Model height ("pixels")
-- Vertical scaling factor
-- Rotation angle (degrees)
-- Water drop (mm) (how much the ocean should be lowered in models)
-- Base height (mm) (how much extra height to add to the base of model)
-- Step size (hgt cells per model pixel)
-- Output file name
+*** 📡 API Usage
+Send a ```POST``` request to the ```/generate``` endpoint with the required parameters. 
+
+**** POST ```/generate```
+Parameters (sent in body as JSON):
+
+| Parameter    | Description                                 |
+| ------------ | ------------------------------------------- |
+| `lat`        | Latitude of the **northwest** corner        |
+| `lon`        | Longitude of the **northwest** corner       |
+| `width`      | Model width in "pixels"                     |
+| `height`     | Model height in "pixels"                    |
+| `zscale`     | Vertical scaling factor                     |
+| `rotation`   | Rotation angle (degrees)                    |
+| `waterdrop`  | Amount to lower sea level (in mm)           |
+| `baseheight` | Additional base thickness for model (in mm) |
+| `step`       | Step size (HGT cells per model pixel)       |
+| `outfile`    | Output STL file name                        |
 
 
-### Descriptions of Files
-* `/hgt_files`
+The STL file will be generated and sent back as a response once complete. 
 
-  * This directory contains the neccessary HGT files for STL generation. 
-  * This could also be a made a symbolic link to another directory that contains your collection of HGT files
+### 📁 Project Structure
+/
+├── hgt_files/                  # Directory for .HGT elevation data
+│                               # You can symlink this to your own DEM data folder
+│
+├── src/                        # Source code for STL generation
+|   ├── middleware/             # Directory for middleware
+|   |   ├── apiKey.js           # Logic for checking API key from backend
+|   |   └── rateLimiter.js      # Rate limiter to prevent abusing the microservice
+│   └── elevstl.c               # C program for terrain-to-STL conversion and relevant helper files
+│
+├── celevstl                    # Compiled C program for STL generation
+├── server.js                   # Node.js server that handles requests and STL generation
+├── example.env                 # Example .env file
+├── package.json
+└── README.md
 
-* `/src`
+### Notes
 
-  * This is the source code for the part of the program that actually creates the STL files, didnt need to alter this that much
+STL generation is delegated to the C program elevstl.c, which accepts CLI arguments.
 
-  * `/src/elevstl.c` - STL-creation program. Accept command line arguments
+The Node.js server (server.js) acts as a microservice wrapper around this program, receiving parameters from my backend and managing file generation and download.
 
-* `server.js`
-
-  * Node.js server. Takes parameters from my backend, and passes them to elevstl to create the STL.
-  * Also handles client downloading of files.
+You must ensure the required .HGT files are available in the hgt_files/ directory.
