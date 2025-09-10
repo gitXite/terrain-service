@@ -47,6 +47,7 @@ Parameters (sent in body as JSON):
 The STL file will be generated and sent back as a response once complete. 
 
 ### 📁 Project Structure
+```plaintext
 /
 ├── hgt_files/                  # Directory for .HGT elevation data
 │                               # You can symlink this to your own DEM data folder
@@ -62,6 +63,7 @@ The STL file will be generated and sent back as a response once complete.
 ├── example.env                 # Example .env file
 ├── package.json
 └── README.md
+```
 
 ### Notes
 
