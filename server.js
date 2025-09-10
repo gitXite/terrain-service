@@ -47,6 +47,10 @@ app.post('/generate', async (req, res) => {
                 resolve();
             });
         });
+        
+        // res.download(outputSTL, err => {
+        //     if (!err) fs.unlinkSync(outputSTL);
+        // });
 
         // // Read STL file as binary
         const stlBuffer = fs.readFileSync(outputSTL);
