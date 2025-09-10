@@ -28,7 +28,7 @@ const CELEVS = path.join(__dirname, 'celevstl');
 
 app.post('/generate', async (req, res) => {
     try {
-        // parameters, northwest corner
+        // lat, lng for northwest corner
         let { lat, lng, width, height, verticalScale } = req.body;
         if (!lat || !lng || !width || !height || !verticalScale) {
             return res.status(400).send("Missing required parameters");
@@ -48,10 +48,16 @@ app.post('/generate', async (req, res) => {
             });
         });
 
-        // Return STL file
-        res.download(outputSTL, err => {
-            if (!err) fs.unlinkSync(outputSTL);
-        });
+        // // Read STL file as binary
+        const stlBuffer = fs.readFileSync(outputSTL);
+        
+        // Send binary STL in response
+        res.setHeader('Content-Type', 'application/sla');
+        res.setHeader('Content-Disposition', `attachment; filename="terrain.stl"`);
+        res.send(stlBuffer);
+        
+        // Remove temp file after sending response
+        fs.unlinkSync(outputSTL);
 
     } catch (err) {
         console.error("Error in terrain-service/generate:", err);
