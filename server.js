@@ -44,7 +44,7 @@ app.post('/generate', async (req, res) => {
         });
 
     } catch (err) {
-        console.error("Error in /generate:", err);
+        console.error("Error in terrain-service/generate:", err);
         res.status(500).send(err.toString());
     }
 });
