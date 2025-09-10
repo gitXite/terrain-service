@@ -56,6 +56,7 @@ The STL file will be generated and sent back as a response once complete.
 |   ├── middleware/             # Directory for middleware
 |   |   ├── apiKey.js           # Logic for checking API key from backend
 |   |   └── rateLimiter.js      # Rate limiter to prevent abusing the microservice
+|   | 
 │   └── elevstl.c               # C program for terrain-to-STL conversion and relevant helper files
 │
 ├── celevstl                    # Compiled C program for STL generation
