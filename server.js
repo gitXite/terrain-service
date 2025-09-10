@@ -28,7 +28,7 @@ const CELEVS = path.join(__dirname, 'celevstl');
 
 app.post('/generate', async (req, res) => {
     try {
-        // northwest corner lat, northwest corner lng
+        // parameters, northwest corner
         let { lat, lng, width, height, verticalScale } = req.body;
         if (!lat || !lng || !width || !height || !verticalScale) {
             return res.status(400).send("Missing required parameters");
@@ -37,6 +37,7 @@ app.post('/generate', async (req, res) => {
         const outputSTL = path.resolve(STL_DIR, `terrain_${Date.now()}.stl`);
 
         // Run celevstl using the HGT tile
+        // 0 1 3 1 represents: rotation angle, water drop, base height, step size
         const cmd = `${CELEVS} ${lat} ${lng} ${width} ${height} ${verticalScale} 0 1 3 1 ${outputSTL}`;
 
         await new Promise((resolve, reject) => {
