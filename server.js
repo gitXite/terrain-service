@@ -4,15 +4,15 @@ const fs = require('fs');
 const path = require('path');
 require('dotenv').config();
 
-const checkApiKey = require('./src/middleware/apiKey');
-const rateLimiter = require('./src/middleware/rateLimiter');
+// const checkApiKey = require('./src/middleware/apiKey');
+// const rateLimiter = require('./src/middleware/rateLimiter');
 
 
 const app = express();
 app.use(express.json());
 
-app.use(checkApiKey);
-app.use('/generate', rateLimiter);
+// app.use(checkApiKey);
+// app.use('/generate', rateLimiter);
 
 
 const PORT = process.env.PORT || 8080;
