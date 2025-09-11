@@ -64,7 +64,7 @@ app.post('/generate', async (req, res) => {
         fs.unlinkSync(outputSTL);
 
     } catch (err) {
-        console.error("Error in terrain-service/generate:", err);
+        console.error("Error in microservice at /generate:", err);
         res.status(500).send(err.toString());
     }
 });
