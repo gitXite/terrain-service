@@ -88,13 +88,13 @@ int writeXStrip(FILE * file, float * lh, float * uh, int width, float xScale, fl
 }
 
 
-int main(int argc, char **argv)			//lat, long, width, height, verticalscale, rot, waterDrop, baseHeight, stepSize, outputname
+int main(int argc, char **argv)			//lat, long, width, height, verticalscale, rot, waterDrop, baseHeight, stepSize, scale, outputname
 //width and height are in units of steps or maybe degrees??
 //rot is in degrees
 {
-	if(argc!=11){
-		printf("Got %d arguments, expected 10:\n", argc-1);
-		printf("%s lat long width height verticalscale rot waterDrop baseHeight stepSize outputname\n", argv[0]);
+	if(argc!=12){
+		printf("Got %d arguments, expected 11:\n", argc-1);
+		printf("%s lat long width height verticalscale rot waterDrop baseHeight stepSize scale outputname\n", argv[0]);
 		return -1;
 	}
 	float lat;
@@ -105,7 +105,8 @@ int main(int argc, char **argv)			//lat, long, width, height, verticalscale, rot
 	float rot;
 	int stepSize = 1;
 	int waterDrop = -2;			//millimeters
-	int baseHeight = 2;			//millimeters
+	int baseHeight = 2;
+	int scale = atoi(argv[10]);			//millimeters
 
 	//float true_verticalscale = 92.7;	//meters/arcsecond at equator
 	//old vertical scale was 23.2
@@ -115,8 +116,8 @@ int main(int argc, char **argv)			//lat, long, width, height, verticalscale, rot
 	globalLat = 3.1415926*lat/180;
 	lng = atof(argv[2]);					//Longitude of NW corner
 	printf("'Northwest' coordinate: (%.6f N, %.6f E)\n", lat, lng);
-	width = atoi(argv[3]);
-	height = atoi(argv[4]);
+	width = atoi(argv[3]) * (scale / 100.0);
+	height = atoi(argv[4]) * (scale / 100.0);
 	userscale = atof(argv[5]);
 	rot = atof(argv[6]);
 	rot = rot*PI/180;
@@ -126,9 +127,11 @@ int main(int argc, char **argv)			//lat, long, width, height, verticalscale, rot
 
 	stepSize = atoi(argv[9]);
 
-	char * outputName = argv[10];
+	char * outputName = argv[11];
 
 	printf("Step size: %d units\n", stepSize);
+	printf("Height: %d\n", height);
+	printf("Width: %d\n", width);
 
 	float scaleFactor = (userscale/verticalscale) / ((float) stepSize);
 
