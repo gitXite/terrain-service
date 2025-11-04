@@ -37,7 +37,7 @@ app.post('/generate', async (req, res) => {
         const outputSTL = path.resolve(STL_DIR, `terrain_${Date.now()}.stl`);
 
         // Run celevstl using the HGT tile
-        // 0 1 3 1 represents: rotation angle, water drop, base height, step size
+        // 500 316 0 1 3 1 represents: width, height, rotation angle, water drop, base height, step size
         const cmd = `${CELEVS} ${lat} ${lng} 500 316 ${verticalScale} 0 1 3 1 ${scale} ${outputSTL}`;
 
         await new Promise((resolve, reject) => {
