@@ -4,15 +4,15 @@ const fs = require('fs');
 const path = require('path');
 require('dotenv').config();
 
-// const checkApiKey = require('./src/middleware/apiKey');
-// const rateLimiter = require('./src/middleware/rateLimiter');
+const checkApiKey = require('./src/middleware/apiKey');
+const rateLimiter = require('./src/middleware/rateLimiter');
 
 
 const app = express();
 app.use(express.json());
 
-// app.use(checkApiKey);
-// app.use('/generate', rateLimiter);
+app.use(checkApiKey);
+app.use('/generate', rateLimiter);
 
 
 const PORT = process.env.PORT || 8080;
@@ -33,6 +33,8 @@ app.post('/generate', async (req, res) => {
         if (!lat || !lng || !verticalScale || !scale) {
             return res.status(400).send("Missing required parameters");
         }
+
+        console.log(`[${new Date().toISOString()}] POST /generate hit from ${req.ip}`);
 
         const outputSTL = path.resolve(STL_DIR, `terrain_${Date.now()}.stl`);
 
@@ -69,4 +71,4 @@ app.post('/generate', async (req, res) => {
     }
 });
 
-app.listen(PORT, () => console.log(`Terrain service running on port: ${PORT}`));
+app.listen(PORT, () => console.log(`Terrain service running on port: ${PORT}\n`));

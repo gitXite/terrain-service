@@ -115,7 +115,6 @@ int main(int argc, char **argv)			//lat, long, width, height, verticalscale, rot
 	lat = atof(argv[1]);					//Latitude of NW corner
 	globalLat = 3.1415926*lat/180;
 	lng = atof(argv[2]);					//Longitude of NW corner
-	printf("'Northwest' coordinate: (%.6f N, %.6f E)\n", lat, lng);
 	width = atoi(argv[3]) * (scale / 100.0);
 	height = atoi(argv[4]) * (scale / 100.0);
 	userscale = atof(argv[5]);
@@ -129,9 +128,15 @@ int main(int argc, char **argv)			//lat, long, width, height, verticalscale, rot
 
 	char * outputName = argv[11];
 
-	printf("Step size: %d units\n", stepSize);
+	printf("Northwest coordinate: (%.2f N, %.2f E)\n", lat, lng);
 	printf("Height: %d\n", height);
 	printf("Width: %d\n", width);
+	printf("Vertical Scale: %.1f\n", userscale);
+	printf("Rotation: %.2f degrees\n", rot);
+	printf("Water Drop: %dmm\n", waterDrop);
+	printf("Base Height: %dmm\n", baseHeight);
+	printf("Scale Multiplier: %d%%\n", scale);
+	printf("Step size: %d units\n", stepSize);
 
 	float scaleFactor = (userscale/verticalscale) / ((float) stepSize);
 
