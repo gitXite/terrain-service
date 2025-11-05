@@ -35,14 +35,15 @@ Parameters of an API call (sent in body as JSON):
 | ------------- | ------------------------------------------- |
 | `lat`         | Latitude of the **northwest** corner        |
 | `lng`         | Longitude of the **northwest** corner       |
-| `width`       | Model width in "pixels"                     |
-| `height`      | Model height in "pixels"                    |
 | `zscale`      | Vertical scaling factor                     |
+| `scale`       | Height & width scaling multiplier           |
 
 Additional arguments for manual generation:
 
 | celevstl args | Description                                 |
 | ------------- | ------------------------------------------- |
+| `width`       | Width of the model (arbitrary)              |
+| `height`      | Height of the model in pixels               |
 | `rotation`    | Rotation angle (degrees)                    |
 | `waterdrop`   | Amount to lower sea level (in mm)           |
 | `baseheight`  | Additional base thickness for model (in mm) |
