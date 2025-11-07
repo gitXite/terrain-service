@@ -12,8 +12,8 @@ Clone the repository and start the server:
 
 By default, the service runs at http://localhost:8080
 
-|  ⚠️ Note: This service requires .HGT DEM files, which are not included.
-|  You’ll need to download the appropriate files manually.
+|  ⚠️ Note: This service requires .HGT DEM files, which are not included. 
+|  You’ll need to download the appropriate files manually. 
 |  Currently, this version supports terrain generation in Norway only.
 
 ---
