@@ -29,7 +29,7 @@ const CELEVS = path.join(__dirname, 'celevstl');
 app.post('/generate', async (req, res) => {
     try {
         // lat, lng for northwest corner
-        let { lat, lng, verticalScale, scale } = req.body;
+        const { lat, lng, verticalScale, scale } = req.body;
         if (!lat || !lng || !verticalScale || !scale) {
             return res.status(400).send("Missing required parameters");
         }
@@ -60,7 +60,7 @@ app.post('/generate', async (req, res) => {
         // Send binary STL in response
         res.setHeader('Content-Type', 'application/sla');
         res.setHeader('Content-Disposition', `attachment; filename="terrain.stl"`);
-        res.send(stlBuffer);
+        res.status(200).send(stlBuffer);
         
         // Remove temp file after sending response
         fs.unlinkSync(outputSTL);
