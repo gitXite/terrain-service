@@ -31,7 +31,7 @@ app.post('/generate', async (req, res) => {
         // lat, lng for northwest corner
         const { lat, lng, verticalScale, scale } = req.body;
         if (!lat || !lng || !verticalScale || !scale) {
-            return res.status(400).send("Missing required parameters");
+            return res.status(400).json({ message: "Missing required parameters" });
         }
 
         console.log(`[${new Date().toISOString()}] POST /generate hit from ${req.ip}`);
@@ -67,7 +67,7 @@ app.post('/generate', async (req, res) => {
 
     } catch (err) {
         console.error("Error in microservice at /generate:", err);
-        res.status(500).send(err.toString());
+        res.status(500).json(err);
     }
 });
 
