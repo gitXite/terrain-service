@@ -16,9 +16,9 @@ FROM node:20-slim
 
 WORKDIR /app
 
-COPY --from-builder /app /app
+COPY --from=builder /app /app
 
-RUN mkdir -p /app/hgt_files
+COPY hgt_files /app/hgt_files
 
 EXPOSE 8080
 
