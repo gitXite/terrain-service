@@ -1,4 +1,4 @@
-FROM node:20-slim AS builder
+FROM node:25.2.1-slim AS builder
 
 RUN apt-get update && apt-get install -y \
   build-essential \
@@ -10,9 +10,11 @@ COPY package*.json ./
 RUN npm ci --only=production
 
 COPY . .
-RUN make
 
-FROM node:20-slim
+RUN make
+RUN chmod +x ./celevstl
+
+FROM node:25.2.1-slim
 
 WORKDIR /app
 
